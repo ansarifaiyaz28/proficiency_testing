@@ -1,0 +1,21 @@
+services:
+  password-pilot:
+    build:
+      context: .
+    container_name: ctia-password-pilot
+    environment:
+      CTIA_DATA_DIR: /data
+      CTIA_PORT: "8080"
+      CTIA_COOKIE_SECURE: "false"
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ctia-password-data:/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  ctia-password-data:

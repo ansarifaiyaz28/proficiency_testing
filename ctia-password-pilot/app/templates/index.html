@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero">
+  <div>
+    <p class="eyebrow">LEVEL 1 · AUTHENTICATION</p>
+    <h1>{{ state['device_name'] }}</h1>
+    <p>Interactive DUT for CTIA Section 3.2.1 password test preparation.</p>
+  </div>
+  <div class="status good"><span></span> Normal operation</div>
+</div>
+
+<section class="grid three">
+  <article class="panel"><h2>Identity</h2><p class="metric">{{ current_user['username'] }}</p><p class="muted">Authenticated role: {{ current_user['role'] }}</p></article>
+  <article class="panel"><h2>Password state</h2><p class="metric">Enrolled</p><p class="muted">The shared default credential is rejected.</p></article>
+  <article class="panel"><h2>Attempt policy</h2><p class="metric">5 / minute</p><p class="muted">Per username and client address.</p></article>
+</section>
+{% endblock %}

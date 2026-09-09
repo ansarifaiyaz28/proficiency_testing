@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Sign in · CTIA Password Pilot{% endblock %}
+{% block content %}
+<section class="auth-card">
+  <p class="eyebrow">DEVICE ACCESS</p>
+  <h1>Sign in to the pilot</h1>
+  <p class="muted">On a fresh or factory-reset device, use <code>admin</code> / <code>admin</code>. You must replace the shared default before normal operation.</p>
+  {% if rate_limited %}
+    <div class="message error">Too many failed attempts. Try again after the 60-second window.</div>
+  {% endif %}
+  <form method="post" class="stack">
+    <label>Username
+      <input name="username" autocomplete="username" required autofocus>
+    </label>
+    <label>Password
+      <input name="password" type="password" autocomplete="current-password" required>
+    </label>
+    <button type="submit">Sign in</button>
+  </form>
+  <p class="fine-print">Failed authentication is limited to five attempts per username and client address in a rolling 60-second window.</p>
+</section>
+{% endblock %}

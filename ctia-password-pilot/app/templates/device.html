@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Device · CTIA Password Pilot{% endblock %}
+{% block content %}
+<div class="hero"><div><p class="eyebrow">PRIVILEGED ACTIONS</p><h1>Device configuration</h1><p>This page is restricted to the administrator role.</p></div></div>
+<section class="grid two">
+  <form method="post" class="panel stack">
+    <h2>Protected setting</h2>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Device name<input name="device_name" value="{{ state['device_name'] }}" maxlength="80" required></label>
+    <button type="submit">Save configuration</button>
+  </form>
+  <form method="post" action="{{ url_for('factory_reset') }}" class="panel danger-zone stack">
+    <h2>Factory reset</h2>
+    <p>Deletes users and sessions, restores <code>admin/admin</code>, and blocks normal operation until the default is changed again.</p>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button class="danger" type="submit">Reset pilot device</button>
+  </form>
+</section>
+{% endblock %}

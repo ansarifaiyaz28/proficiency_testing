@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}CTIA Password Pilot{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('index') if current_user else url_for('login') }}">
+      <span class="brand-mark">3.2.1</span>
+      <span>CTIA Password Pilot</span>
+    </a>
+    {% if current_user %}
+      <nav aria-label="Main navigation">
+        {% if not current_user['must_change_password'] %}
+          <a href="{{ url_for('index') }}">Overview</a>
+          <a href="{{ url_for('change_password') }}">Password</a>
+          {% if current_user['role'] == 'admin' %}
+            <a href="{{ url_for('users') }}">Users</a>
+            <a href="{{ url_for('device') }}">Device</a>
+          {% endif %}
+        {% endif %}
+        <form action="{{ url_for('logout') }}" method="post" class="inline-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button class="link-button" type="submit">Sign out</button>
+        </form>
+      </nav>
+    {% endif %}
+  </header>
+
+  <main class="page-shell">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="messages" aria-live="polite">
+          {% for category, message in messages %}
+            <div class="message {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
