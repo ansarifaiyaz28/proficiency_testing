@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software in research, testing, education, or publications, please cite it using the information below."
+
+title: "IoT Password Security Lab"
+type: software
+authors:
+  - family-names: "Ansari
+    given-names: "Faiyaz"
+
+version: 1.0.0
+date-released: 2026-09-09
+
+repository-code: "https://github.com/ansarifaiyaz28/iot-password-security-lab"
+
+license: Apache-2.0
+
+abstract: >
+  A containerized cybersecurity laboratory for testing and
+  demonstrating IoT password-security controls, including password
+  complexity, default-password handling, authentication, role
+  separation, and brute-force protection.
